@@ -5,9 +5,11 @@ class AuthenticationController < ApplicationController
   def login
     @user = User.find_by_email(params[:email])
     if @user&.authenticate(params[:password])
-      token = JsonWebToken.encode(user_id: @user.id)
-      time = Time.now + 24.hours.to_i
-      render json: { token: token }, status: :ok
+      token_data = JsonWebToken.encode(user_id: @user.id)
+      render json: {
+        token: token_data[:token],
+        exp: Time.at(token_data[:exp]).
+          strftime("%m-%d-%Y %H:%M:%S") }, status: :ok
     else
       render json: { error: 'unauthorized' }, status: :unauthorized
     end
