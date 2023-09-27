@@ -26,7 +26,7 @@ RSpec.describe CommentsController, type: :controller do
       {
         comment: {
           name: FFaker::NameBR.name,
-          comment: FFaker::Lorem.word,
+          description: FFaker::Lorem.word,
           post_id: post_instance.id
         }
       }
@@ -36,7 +36,7 @@ RSpec.describe CommentsController, type: :controller do
       {
         comment: {
           name: nil,
-          comment: nil,
+          description: nil,
           post_id: nil
         }
       }
@@ -70,11 +70,11 @@ RSpec.describe CommentsController, type: :controller do
   end
 
   describe 'PUT #update' do
-    let(:new_params) { { comment: 'Test comment' } }
+    let(:new_params) { { description: 'Test description' } }
 
-    it 'updates the comment' do
+    it 'updates the description' do
       put :update, params: { id: comment.id, comment: new_params }
-      expect(comment.reload.comment).to eq('Test comment')
+      expect(comment.reload.description).to eq('Test description')
     end
 
     it 'returns a 200 status code' do

@@ -3,6 +3,6 @@ FactoryBot.define do
     association :post
 
     name { FFaker::NameBR.name }
-    comment { FFaker::Lorem.word }
+    description { FFaker::Lorem.word }
   end
 end
