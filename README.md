@@ -1,24 +1,81 @@
-# README
+README.md
+---
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Projeto CRUD de Usuários/Comentários/Posts com Autenticação
 
-Things you may want to cover:
+## Índice
 
-* Ruby version
+- [Requisitos](#requisitos)
+- [Instalação e Configuração](#instalação-e-configuração)
+- [Executando o Projeto](#executando-o-projeto)
+- [Postman Collection](#postman-collection)
 
-* System dependencies
+---
 
-* Configuration
+## Descrição
 
-* Database creation
+Este projeto é uma aplicação Rails que permite a criação, leitura, atualização e exclusão de usuários. Além disso, possui autenticação de usuários através de JSON Web Tokens (JWT).
 
-* Database initialization
+---
 
-* How to run the test suite
+## Requisitos
 
-* Services (job queues, cache servers, search engines, etc.)
+- Ruby 3.1.0
+- Rails 7.0.6
+- PostgreSQL 12.x
 
-* Deployment instructions
+---
 
-* ...
+## Instalação e Configuração
+
+1. **Clone o repositório:**
+
+    ```
+    git clone https://github.com/GuiMarcelino/Crud_ISG.git
+    ```
+
+2. **Navegue até o diretório do projeto:**
+
+    ```
+    cd Crud_ISG
+    ```
+
+3. **Instale as dependências:**
+
+    ```
+    bundle install
+    ```
+
+4. **Configure o banco de dados:**
+
+    ```
+    rails db:create
+    rails db:migrate
+    ```
+
+5. **Execute o Seed para criar dados iniciais:**
+
+    ```
+    rails db:seed
+    ```
+
+---
+
+## Executando o Projeto
+
+Inicie o servidor Rails:
+
+```
+rails server
+```
+
+Agora você pode acessar o projeto em `http://localhost:3000`.
+
+---
+
+## Postman Collection
+
+Para testar todas as rotas disponíveis, você pode importar o arquivo `Crud_User_Postman_Collection.json` no Postman.
+
+---
+
