@@ -6,13 +6,10 @@ class CommentsController < ApplicationController
   # GET /comments
   def index
     @comments = Comment.all
-    render json: @comments
   end
 
   # GET /comments/1
-  def show
-    render json: @comment
-  end
+  def show; end
 
   # POST /comments
   def create
@@ -28,7 +25,7 @@ class CommentsController < ApplicationController
   # PATCH/PUT /comments/1
   def update
     if @comment.update(comment_params)
-      render json: @comment
+      @comment
     else
       render json: @comment.errors, status: :unprocessable_entity
     end
@@ -37,13 +34,14 @@ class CommentsController < ApplicationController
   # DELETE /comments/1
   def destroy
     @comment.destroy
-    render json: { message: 'Comment successfully deleted' }, status: :ok
   end
 
   private
 
   def set_comment
     @comment = Comment.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render json: { error: 'Comment not found' }, status: :not_found
   end
 
   def comment_params

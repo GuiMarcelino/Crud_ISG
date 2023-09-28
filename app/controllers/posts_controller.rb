@@ -5,13 +5,10 @@ class PostsController < ApplicationController
   # GET /posts
   def index
     @posts = Post.all
-    render json: @posts, status: :ok
   end
 
   # GET /posts/{id}
-  def show
-    render json: @post, status: :ok
-  end
+  def show; end
 
   # POST /posts
   def create
@@ -19,23 +16,24 @@ class PostsController < ApplicationController
     if @post.save
       render json: @post, status: :created
     else
-      render json: { errors: @post.errors.full_messages }, status: :unprocessable_entity
+      render json: { errors: @post.errors.full_messages },
+        status: :unprocessable_entity
     end
   end
 
   # PUT /posts/{id}
   def update
     if @post.update(post_params)
-      render json: @post, status: :ok
+      @post
     else
-      render json: { errors: @post.errors.full_messages }, status: :unprocessable_entity
+      render json: { errors: @post.errors.full_messages },
+        status: :unprocessable_entity
     end
   end
 
   # DELETE /posts/{id}
   def destroy
     @post.destroy
-    render json: { message: 'Post deleted' }, status: :ok
   end
 
   private

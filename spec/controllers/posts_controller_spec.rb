@@ -10,14 +10,14 @@ RSpec.describe PostsController, type: :controller do
 
   describe 'GET #index' do
     it 'returns a success response' do
-      get :index
+      get :index, format: :json
       expect(response).to be_successful
     end
   end
 
   describe 'GET #show' do
     it 'returns a success response' do
-      get :show, params: { id: post_instance.id }
+      get :show, params: { id: post_instance.id }, format: :json
       expect(response).to be_successful
     end
   end
@@ -107,12 +107,12 @@ RSpec.describe PostsController, type: :controller do
     end
 
     it "updates the post" do
-      put :update, params: { id: post_instance.id, post: new_params }
+      put :update, params: { id: post_instance.id, post: new_params }, format: :json
       expect(post_instance.reload.title).to eq('New Title')
     end
 
     it "returns a 200 status code" do
-      put :update, params: { id: post_instance.id, post: new_params }
+      put :update, params: { id: post_instance.id, post: new_params }, format: :json
       expect(response).to have_http_status(200)
     end
   end
@@ -120,17 +120,17 @@ RSpec.describe PostsController, type: :controller do
   describe 'DELETE #destroy' do
     before do
       request.headers['Authorization'] = "Bearer #{token}"
-      post_instance # Create the post before the expectation
+      post_instance
     end
 
     it "deletes the post" do
       expect {
-        delete :destroy, params: { id: post_instance.id }
+        delete :destroy, params: { id: post_instance.id }, format: :json
       }.to change(Post, :count).by(-1)
     end
 
     it "returns a 200 status code" do
-      delete :destroy, params: { id: post_instance.id }
+      delete :destroy, params: { id: post_instance.id }, format: :json
       expect(response).to have_http_status(200)
     end
   end
