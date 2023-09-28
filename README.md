@@ -75,7 +75,7 @@ Agora você pode acessar o projeto em `http://localhost:3000`.
 
 ## Postman Collection
 
-Para testar todas as rotas disponíveis, você pode importar o arquivo `Crud_User_Postman_Collection.json` no Postman.
+Para testar todas as rotas disponíveis, faça o download desse arquivo [file](ISG.postman_collection.json) depois você pode importar o arquivo no Postman.
 
 ---
 
