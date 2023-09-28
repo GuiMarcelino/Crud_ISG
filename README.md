@@ -14,7 +14,7 @@ README.md
 
 ## Descrição
 
-Este projeto é uma aplicação Rails que permite a criação, leitura, atualização e exclusão de usuários. Além disso, possui autenticação de usuários através de JSON Web Tokens (JWT).
+Este projeto é uma aplicação Rails que permite a criação, leitura, atualização e exclusão de usuários, posts e comentários. Além disso, possui autenticação de usuários através de JSON Web Tokens (JWT).
 
 ---
 
