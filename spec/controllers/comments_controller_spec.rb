@@ -9,14 +9,14 @@ RSpec.describe CommentsController, type: :controller do
 
   describe 'GET #index' do
     it 'returns a success response' do
-      get :index
+      get :index, format: :json
       expect(response).to be_successful
     end
   end
 
   describe 'GET #show' do
     it 'returns a success response' do
-      get :show, params: { id: comment.id }
+      get :show, params: { id: comment.id }, format: :json
       expect(response).to be_successful
     end
   end
@@ -72,14 +72,23 @@ RSpec.describe CommentsController, type: :controller do
   describe 'PUT #update' do
     let(:new_params) { { description: 'Test description' } }
 
-    it 'updates the description' do
-      put :update, params: { id: comment.id, comment: new_params }
-      expect(comment.reload.description).to eq('Test description')
+    context 'when comment exists' do
+      it 'updates the description' do
+        put :update, params: { id: comment.id, comment: new_params }, format: :json
+        expect(comment.reload.description).to eq('Test description')
+      end
+
+      it 'returns a 200 status code' do
+        put :update, params: { id: comment.id, comment: new_params }, format: :json
+        expect(response).to have_http_status(200)
+      end
     end
 
-    it 'returns a 200 status code' do
-      put :update, params: { id: comment.id, comment: new_params }
-      expect(response).to have_http_status(200)
+    context 'when comment does not exist' do
+      it 'returns a 404 status code' do
+        put :update, params: { id: -1, comment: new_params }, format: :json
+        expect(response).to have_http_status(404)
+      end
     end
   end
 
@@ -90,12 +99,12 @@ RSpec.describe CommentsController, type: :controller do
 
     it 'deletes the comment' do
       expect {
-        delete :destroy, params: { id: comment.id }
+        delete :destroy, params: { id: comment.id }, format: :json
       }.to change(Comment, :count).by(-1)
     end
 
     it 'returns a 200 status code' do
-      delete :destroy, params: { id: comment.id }
+      delete :destroy, params: { id: comment.id }, format: :json
       expect(response).to have_http_status(200)
     end
   end

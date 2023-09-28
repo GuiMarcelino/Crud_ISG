@@ -9,14 +9,14 @@ RSpec.describe UsersController, type: :controller do
 
   describe 'GET #index' do
     it 'returns a success response' do
-      get :index
+      get :index, format: :json
       expect(response).to be_successful
     end
   end
 
   describe 'GET #show' do
     it 'returns a success response' do
-      get :show, params: { id: user.id }
+      get :show, params: { id: user.id }, format: :json
       expect(response).to be_successful
     end
   end
@@ -116,12 +116,12 @@ RSpec.describe UsersController, type: :controller do
       end
 
       it 'updates the user' do
-        put :update, params: { id: user.id }.merge(new_params)
+        put :update, params: { id: user.id }.merge(new_params), format: :json
         expect(user.reload.name).to eq('New Name')
       end
 
       it 'returns a 200 status code' do
-        put :update, params: { id: user.id }.merge(new_params)
+        put :update, params: { id: user.id }.merge(new_params), format: :json
         expect(response).to have_http_status(200)
       end
     end
@@ -147,12 +147,12 @@ RSpec.describe UsersController, type: :controller do
 
       it 'deletes the user' do
         expect {
-          delete :destroy, params: { id: user.id }
+          delete :destroy, params: { id: user.id }, format: :json
         }.to change(User, :count).by(-1)
       end
 
       it 'returns a 200 status code' do
-        delete :destroy, params: { id: user.id }
+        delete :destroy, params: { id: user.id }, format: :json
         expect(response).to have_http_status(200)
       end
     end
