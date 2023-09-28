@@ -77,5 +77,6 @@ Agora você pode acessar o projeto em `http://localhost:3000`.
 
 Para testar todas as rotas disponíveis, faça o download desse arquivo [file](ISG.postman_collection.json) depois você pode importar o arquivo no Postman.
 
+⚠️ Lembrando que senha e email do usuário está no arquivo seed
 ---
 
